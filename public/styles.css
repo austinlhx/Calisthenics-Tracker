@@ -1,0 +1,11 @@
+video {
+    width: 1280px;
+    height: 720px;
+
+    /* flips video horizontally */
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+select {
+    width: 150px;
+}
