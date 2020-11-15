@@ -4,7 +4,7 @@ import json
 import numpy as np
 import os
 
-from pose import Pose, Part, PoseSequence
+from ML.pose import Pose, Part, PoseSequence
 from pprint import pprint
 
 

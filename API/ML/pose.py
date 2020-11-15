@@ -17,8 +17,6 @@ class PoseSequence:
             for attr, part in pose:
                 setattr(pose, attr, part / mean_torso)
 
-
-
 class Pose:
     PART_NAMES = ['nose', 'neck',  'rshoulder', 'relbow', 'rwrist', 'lshoulder', 'lelbow', 'lwrist', 'midhip', 'rhip', 'rknee', 'rankle', 'lhip', 'lknee', 'lankle', 'reye', 'leye', 'rear', 'lear', 'lbigtoe', 'lsmalltoe', 'lheel', 'rbigtoe', 'rsmalltoe', 'rheel', 'background']
 

@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask, request
 import os
-import ML
+from ML import main
 
 app = Flask(__name__)
 
@@ -10,7 +10,9 @@ def hello_world():
 
 @app.route('/position-estimate', methods=['POST'])
 def run_ML():
-    ML.run()
+    output = request.get_json()
+    print(output)
+    return main.run(output['video_path'], output['exercise']) 
 
 if __name__ == "__main__":
     environment_port = os.getenv("PORT", 5000)
