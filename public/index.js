@@ -3,56 +3,130 @@ const videoElement = document.querySelector("#streamed");
 const recordedElement = document.querySelector("#recorded");
 const videoSelect = document.querySelector("select#videoSource");
 
+const recordingStatusElement = document.querySelector("#recording-status");
+
 videoSelect.onchange = getStream;
 
 //setup a media stream from our webcam using WebRTC
-streamVideo()
-    .then(() => recordVideo())
-    .catch(handleError);
 
-async function recordVideo() {
-    //get the stream from the video element
+//hide the recorded element initially
+recordedElement.style.display = "none";
+
+var recordedChunks;
+var recordedVideoURL;
+var mediaRecorder;
+
+async function initVideo() {
+    await streamVideo();
     let stream = videoElement.captureStream();
-
-
-    let recordingOptions = {
-        mimeType: 'video/webm;codecs=h264',
-    };
-    //create a new media recorder
-    let mediaRecorder = new MediaRecorder(stream, recordingOptions);
+    mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm" });
     mediaRecorder.ondataavailable = handleDataAvailable;
-    mediaRecorder.start();
 
-    setTimeout((event) => {
-        console.log("stopping");
-        mediaRecorder.stop();
-    }, 16000);
+    document.addEventListener("keypress", handleRecordVideo);
+    // recordButton.addEventListener("click", () => recordVideo(mediaRecorder));
+    // stopButton.addEventListener("click", () => stopRecording(mediaRecorder));
+    // uploadButton.addEventListener("click", () => uploadVideo());
 }
 
-var recordedChunks = [];
+function handleRecordVideo() {
+    document.removeEventListener("keypress", handleRecordVideo);
+
+    recordVideo();
+
+    document.addEventListener("keypress", handleStopRecording);
+}
+function handleStopRecording() {
+    document.removeEventListener("keypress", handleStopRecording);
+
+    stopRecording();
+
+    document.addEventListener("keypress", handleRecordVideo);
+}
+
+
+
+async function recordVideo() {
+    recordedChunks = [];
+    mediaRecorder.start();
+
+    recordedElement.style.display = "none";
+    videoElement.style.display = "";
+
+    recordingStatusElement.innerHTML =
+        "Recording... Press any key to stop recording";
+
+    console.log("Started recording video");
+}
+
+async function stopRecording() {
+    mediaRecorder.stop();
+
+    videoElement.style.display = "none";
+    recordedElement.style.display = "";
+
+    recordingStatusElement.innerHTML =
+        "Video ready. Press any key to retry recording";
+
+    
+    console.log("Stopped recording video");
+    uploadVideo()
+    
+}
+
+async function uploadVideo() {
+      var blob = new Blob(recordedChunks, {
+        type: 'video/webm'
+      });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      document.body.appendChild(a);
+      a.style = 'display: none';
+      a.href = url;
+      a.download = 'test.webm';
+      a.click();
+      window.URL.revokeObjectURL(url);
+}
+
+function setRecordedVideo() {
+    let buffer = new Blob(recordedChunks);
+
+    //set the recorded video element to have the recorded video
+    
+    recordedElement.src = window.URL.createObjectURL(buffer);
+
+    let videoBuffer = new Blob(recordedChunks, { type: "video/webm" });
+
+    recordedVideoURL = URL.createObjectURL(videoBuffer);
+}
+
+function dataURItoBlob(dataURI) {
+    // convert base64 to raw binary data held in a string
+    var byteString = atob(dataURI.split(",")[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+
+    // write the bytes of the string to an ArrayBuffer
+    var arrayBuffer = new ArrayBuffer(byteString.length);
+    var _ia = new Uint8Array(arrayBuffer);
+    for (var i = 0; i < byteString.length; i++) {
+        _ia[i] = byteString.charCodeAt(i);
+    }
+
+    var dataView = new DataView(arrayBuffer);
+    var blob = new Blob([dataView], { type: mimeString });
+    return blob;
+}
+
 function handleDataAvailable(event) {
     console.log("Data Available: ");
     if (event.data.size > 0) {
         recordedChunks.push(event.data);
-        console.log(recordedChunks);
-        download();
+
+        setRecordedVideo();
     } else {
         //
     }
-}
-
-function download() {
-    //create a blob using our recorded
-    let blob = new Blob(recordedChunks, { type: "video/mp4" });
-
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    document.body.appendChild(a);
-    a.style = "display: none";
-    a.href = url;
-    a.download = "pushups.mp4";
-    a.click();
-    window.URL.revokeObjectURL(url);
 }
 
 async function streamVideo() {
@@ -99,7 +173,10 @@ async function getStream() {
 
     const videoSource = videoSelect.value;
     const hdConstraints = {
-        video: true,
+        video: {
+            width: { min: 1024, ideal: 1280, max: 1920 },
+            height: { min: 576, ideal: 720, max: 1080 },
+        },
     };
 
     let stream = await navigator.mediaDevices.getUserMedia(hdConstraints);
