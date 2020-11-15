@@ -9,8 +9,55 @@
             <select id="videoSource"></select>
         </div>
 
+        <div class = "input">
+            <input type="text" id="video_type" required> </input>
+            <input type="exercise" id="exercise" required> </input>
+
+            <button type="submit" onclick="myfunc()">Click to submit video</button>
+
+            <h3 id="Output"></h3>
+        </div>
+
         <video id="streamed" autoplay></video>
         <video id="recorded"></video>
-        <script async src="index.js"></script>
+        
+        <script> 
+            function myfunc() {
+                text = document.getElementById("video_type").value;
+                exercise = document.getElementById("exercise").value;
+                
+                data = {
+                    "video_path" : text,
+                    "exercise" : exercise
+                }
+                
+                fetch("http://localhost:5000/", {
+                    method: "GET",
+                    mode: 'no-cors',
+                    cache: "no-cache",
+                }).then(res => {console.log(res);})
+
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify(data);
+
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow',
+                };
+
+                fetch("http://localhost:5000/position-estimate", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    console.log(result);
+                    document.getElementById("Output").textContent = result;
+                })
+                .catch(error => console.log('error', error));
+
+            }
+        </script>
     </body>
 </html>
