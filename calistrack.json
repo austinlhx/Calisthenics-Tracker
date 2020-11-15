@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "calistrack",
+  "private_key_id": "eb9451ad098d4f42487f4053f8c4d2d6621b58ab",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCpyUeOnMwFe7wg\nrgWH58sQz0Dgy7l0p53a8YwDMFqAxFMG6PyTH+SxlbQWh6ZX3D2LEZnGTh70LG/Z\naGd9oMj3uzGwddg8jAqXhLMfpNRFeCzzOdyKblPmnY25vYaTiU6RwP3LSIFm7FRM\nmKofgGPFxX930QbuBv5lzM05wlJ80l4i9DREYDjOcIHXBkjijY5xyY8zWppJmG2q\nKkZ+OLsZqFLBV4soRncV1u029JVCsli4EYYItA5lCs+ZFDveIlguTr5kuoYm8ibO\n+QUQ/oGlBBG6LPVhBypa3MWepEQ73s+7iNUDdRMg01uNZcLzVTMQQXaEHniUyLGe\noI5RrmXlAgMBAAECggEABMp0bbKAckYpyo1GhC129ig29zDgcIl7Q46Nyhg+8YO4\nqQkBeYBMonMsM/eLas7A4M/0FBuntXGcjVisFOgoy465afaFTb4Q3XIl4MZ0o+ou\ncIWJMtHGpcr70QonRjn5YNT+hFItLpOMFGY5ZK6pgg7e2ClqheRmIMa84ryYOcPl\nE27KeOzaYLH90dCn8pFuDL7pXML+eE22c6zEjeAakJYm7aleiWUiCcevvnQFlQw3\n3wOJhz80zn1JlDVuedzvIFEaIMC/hErHIUF7+3AgEwd01VTlFr+rRZUvOGqOtccd\nb78BNamuLet5KKhpiaoVCiQH5IGq5g4O+1ncmZjqEQKBgQDaQ+ZWEfoP8EQ1Wmx6\nsa0HdFtX61RidN79poCgVo6dXGtaCV0o+eo46yazgY7h5aYhzizHOUw5sQXYCa0A\nNHWmdsHgWSJzMX+13cWiL6NkW3DRXbWLIj7MTgsRsLeiUIVsUENFGBak9eXGTbW8\nnnrA7qqSGuriCbOZgaoy79mmkQKBgQDHI8VOiolrIv47jiaXcZPaVnvfExfNQ7Be\njXGe3ge0x45edY65JozF+6ikj4iDEya8Zs8KN7fWrvQaaV3ur+HJCwd+TaT6+CzI\n6aPmitHJIejSrmNaX+bsiJXtKHpw77MQcl/nzVgD1gvsg3neqMwW8PRdkhDjhEU6\nzbIUt438FQKBgHs7Xu81kyQwmbIt7ZWQf4r37SLEoY49QjGgMntUo4zBQ3NAWjLq\nd43PZrhu68crLBNmHu4Usa7Y/d2uCNlWxR5JaslKSiMTzXFXV2Bs2SmuXxI2gGuf\n2Cjt314LkoK4R7yRzIlUQmS82RCPi46FQ/VuSyvWussIgzimdvvvY8mhAoGAWW5/\nFZ6xyCOW+TgFrM2dENj2GGCCt/RGKLBs7mPYIh/cmB9DUXM2lVNHkV/EdtkK9GFX\nacdMEGXRymq3fJIQXDFP1DEafnsl4bTLnqWJQUKxRKx8ggG/u0o7yp37Hu0HBcPX\nvkpB1Lcz86u3937m6QadN8h5PTQRwy7NYvBsG2ECgYBHNJUPOkemkPg6gva68kca\nFXRpDIucqtZHIZdZrO6SbyBvw/9Fy3ChiDcd95R5s0uWJCx8cJVr8nB5GnRW//SX\noVqtDHV/UPVu+iF2OuRMAx3H5WmP1v+0X2nUlg3j2f9bg/lQa+sP4yPaFGv627nS\nXW168/QBa+iEHe5Crn2ECQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "calistrack@calistrack.iam.gserviceaccount.com",
+  "client_id": "107005983455732878175",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/calistrack%40calistrack.iam.gserviceaccount.com"
+}
