@@ -3,6 +3,8 @@ import numpy as np
 class PoseSequence:
     def __init__(self, sequence):
         self.poses = []
+
+        # create a pose for each frame
         for parts in sequence:
             self.poses.append(Pose(parts))
         
@@ -18,13 +20,13 @@ class PoseSequence:
 
 
 class Pose:
-    PART_NAMES = ['nose', 'neck',  'rshoulder', 'relbow', 'rwrist', 'lshoulder', 'lelbow', 'lwrist', 'rhip', 'rknee', 'rankle', 'lhip', 'lknee', 'lankle', 'reye', 'leye', 'rear', 'lear']
+    PART_NAMES = ['nose', 'neck',  'rshoulder', 'relbow', 'rwrist', 'lshoulder', 'lelbow', 'lwrist', 'midhip', 'rhip', 'rknee', 'rankle', 'lhip', 'lknee', 'lankle', 'reye', 'leye', 'rear', 'lear', 'lbigtoe', 'lsmalltoe', 'lheel', 'rbigtoe', 'rsmalltoe', 'rheel', 'background']
 
     def __init__(self, parts):
         """Construct a pose for one frame, given an array of parts
 
         Arguments:
-            parts - 18 * 3 ndarray of x, y, confidence values
+            parts - 25 * 3 ndarray of x, y, confidence values
         """
         for name, vals in zip(self.PART_NAMES, parts):
             setattr(self, name, Part(vals))

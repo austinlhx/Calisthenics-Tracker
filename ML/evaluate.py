@@ -28,7 +28,9 @@ def evaluate_pose(pose_seq, exercise):
 
 def _bicep_curl(pose_seq):
     # find the arm that is seen most consistently
+    #print(pose_seq)
     poses = pose_seq.poses
+
     right_present = [1 for pose in poses 
             if pose.rshoulder.exists and pose.relbow.exists and pose.rwrist.exists]
     left_present = [1 for pose in poses
