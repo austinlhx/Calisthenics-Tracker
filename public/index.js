@@ -78,14 +78,66 @@ async function uploadVideo() {
         type: 'video/webm'
       });
       var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      document.body.appendChild(a);
-      a.style = 'display: none';
-      a.href = url;
-      a.download = 'test.webm';
-      a.click();
+    
+      myfunc(url);
+      
       window.URL.revokeObjectURL(url);
 }
+
+
+
+
+
+
+
+function myfunc(url) {
+    // text = document.getElementById("video_type").value;
+    exercise = document.getElementById("exercise").value;
+    
+    data = {
+        "video_path" : url,
+        "exercise" : "bicep_curl"
+    }
+    
+    fetch("http://localhost:5000/", {
+        method: "GET",
+        mode: 'no-cors',
+        cache: "no-cache",
+    }).then(res => {console.log(res);})
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(data);
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
+    };
+
+    fetch("http://localhost:5000/position-estimate", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+        console.log(result);
+        document.getElementById("Output").textContent = result;
+    })
+    .catch(error => console.log('error', error));
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 function setRecordedVideo() {
     let buffer = new Blob(recordedChunks);
