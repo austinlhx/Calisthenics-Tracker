@@ -5,7 +5,7 @@ const videoSelect = document.querySelector("select#videoSource");
 
 const recordingStatusElement = document.querySelector("#recording-status");
 
-videoSelect.onchange = getStream;
+//videoSelect.onchange = getStream;
 
 //setup a media stream from our webcam using WebRTC
 
@@ -79,7 +79,7 @@ async function uploadVideo() {
       });
       var url = URL.createObjectURL(blob);
     
-      myfunc(url);
+      //myfunc(url);
       
       window.URL.revokeObjectURL(url);
 }
@@ -205,16 +205,16 @@ async function getDevices() {
 //once we have the devices we can append them to the devices dropdown
 async function gotDevices(deviceInfos) {
     //window.deviceInfos = deviceInfos;
-    console.log("Available input and output devices:", deviceInfos);
-    for (let deviceInfo of deviceInfos) {
-        const option = document.createElement("option");
-        option.value = deviceInfo.deviceId;
-        if (deviceInfo.kind === "videoinput") {
-            option.text =
-                deviceInfo.label || "camera " + (videoSelect.length + 1);
-            videoSelect.appendChild(option);
-        }
-    }
+    // console.log("Available input and output devices:", deviceInfos);
+    // for (let deviceInfo of deviceInfos) {
+    //     const option = document.createElement("option");
+    //     option.value = deviceInfo.deviceId;
+    //     if (deviceInfo.kind === "videoinput") {
+    //         option.text =
+    //             deviceInfo.label || "camera " + (videoSelect.length + 1);
+    //         videoSelect.appendChild(option);
+    //     }
+    // }
 }
 
 //gets the users video stream using getUserMedia(), will prompt the user for access to their webcam
@@ -223,7 +223,7 @@ async function getStream() {
     //     window.stream.getTracks().forEach((track) => track.stop());
     // }
 
-    const videoSource = videoSelect.value;
+    //const videoSource = videoSelect.value;
     const hdConstraints = {
         video: {
             width: { min: 1024, ideal: 1280, max: 1920 },
@@ -238,9 +238,9 @@ async function getStream() {
 //sets the HTML5 video element to the stream from the users webcam
 async function gotStream(stream) {
     //window.stream = stream; //make stream available to the console
-    videoSelect.selectedIndex = [...videoSelect.options].findIndex(
-        (option) => option.text === stream.getVideoTracks()[0].label
-    );
+    // videoSelect.selectedIndex = [...videoSelect.options].findIndex(
+    //     (option) => option.text === stream.getVideoTracks()[0].label
+    // );
     videoElement.srcObject = stream;
 }
 

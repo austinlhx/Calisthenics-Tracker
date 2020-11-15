@@ -27,26 +27,31 @@
             </div>
         </div>
         <div id="video-page">
-            <div class="select">
+            <!-- <div class="select">
                 <label for="videoSource">Video source: </label>
                 <select id="videoSource"></select>
-            </div>
+            </div> -->
+
+
+            <h1 id="recording-status">Get set for your exercise</h1> 
 
             <video id="streamed" autoplay></video>
             <video id="recorded" autoplay loop></video>
-
-            <h1 id="recording-status">Press any key to start recording</h1> 
             
-            <div class="select">
+            <h2 id="recording-status">Press any key to start recording</h2> 
+            
+            <!-- <div class="select">
                 <label for="videoSource">Video source: </label>
                 <select id="videoSource"></select>
-            </div>
+            </div> -->
     
+            
             <div class = "input">
-                <input type="text" id="video_type" required> </input>
-                <input type="exercise" id="exercise" required> </input>
+                <h3>Or upload a video</h3>
+                <input type="text" id="video_type" placeholder="video path" required> </input>
+                <input type="exercise" id="exercise" placeholder="exercise name" required> </input>
     
-                <button type="submit" onclick="myfunc()">Click to submit video</button>
+                <button class="video-submit" type="submit" onclick="myfunc()">Click to submit video</button>
     
                 <h3 id="Output"></h3>
             </div>

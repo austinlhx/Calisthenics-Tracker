@@ -48,13 +48,41 @@ body>div{
     justify-content: center;
     align-items: center;
     height: 100%;
+    background-color: #e7f5ff;
 
     transition: .4s opacity ease-in-out;
 }
 body>div> * {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
+.input {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    background-color:  rgb(41, 43, 68);
+    color: #f5fbff;
+
+    padding: 20px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    
+}
+input {
+    color: #f5fbff;
+
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+    font-family: 'Roboto';
+    font-size: 0.3rem;
+    margin: 10px;
+}
+input,textarea,select {
+    outline: none;
+}
 
 .button {
     width: 200px;
@@ -72,7 +100,16 @@ body>div> * {
     transform: scale(1.1);
 }
 
+.video-submit {
+    width: 200px;
+    height: 80px;
+    border-radius: 30px;
+    background-color: #f5fbff;
+    font-family: 'Roboto';
+    font-size: 0.3rem;
+    color:rgb(41, 43, 68);
 
+}
 
 
 
