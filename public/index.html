@@ -2,15 +2,99 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto"
+        />
     </head>
     <body>
-        <div class="select">
-            <label for="videoSource">Video source: </label>
-            <select id="videoSource"></select>
+        <div id="home-page">
+            <img class="icon-large" src="muscles.svg" />
+            <h1>Welcome to CalisTrack!</h1>
+            <h2>We can assess your form</h2>
+            <div class="button" id="home-button"><h3>Ok!</h3></div>
+        </div>
+        <div id="explaination-page">
+            <img class="icon-large" src="muscles.svg" />
+            <h2>1. Record yourself doing an exercise</h2>
+            <h2>
+                2. Hit "process". Our application will assess your form and
+                provide tips for what to work on
+            </h2>
+            <h2>3. Repeat until you get your form 100% correct</h2>
+            <div class="button" id="explaination-button">
+                <h3>I'm Ready!</h3>
+            </div>
+        </div>
+        <div id="video-page">
+            <div class="select">
+                <label for="videoSource">Video source: </label>
+                <select id="videoSource"></select>
+            </div>
+
+            <video id="streamed" autoplay></video>
+            <video id="recorded" autoplay loop></video>
+
+            <h1 id="recording-status">Press any key to start recording</h1>   
         </div>
 
-        <video id="streamed" autoplay></video>
-        <video id="recorded"></video>
-        <script async src="index.js"></script>
+        <script>
+            //setup buttons
+            let homeButton = document.querySelector("#home-button");
+            homeButton.addEventListener("click", () => {
+                setPage("explaination-page");
+            });
+
+            let explainationButton = document.querySelector(
+                "#explaination-button"
+            );
+            explainationButton.addEventListener("click", () => {
+                setPage("video-page");
+                initVideo();
+            });
+
+            async function timeout(ms) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => resolve(), ms);
+                });
+            }
+
+            var currentPageID = "home-page";
+            initializePages();
+
+            function initializePages() {
+                let pageElements = document.querySelectorAll("body>div");
+                for (let pageElement of pageElements) {
+                    if (pageElement.id == currentPageID) {
+                        pageElement.style.display = "";
+                        pageElement.style.opacity = "1.0";
+                    } else {
+                        pageElement.style.display = "none";
+                        pageElement.style.opacity = "0.0";
+                    }
+                }
+            }
+
+            async function setPage(nextPageID) {
+                let currentPageElement = document.querySelector(
+                    `#${currentPageID}`
+                );
+                let nextPageElement = document.querySelector(`#${nextPageID}`);
+
+                currentPageElement.style.opacity = "0.0";
+
+                await timeout(400);
+
+                currentPageElement.style.display = "none";
+                nextPageElement.style.display = "";
+
+                await timeout(400);
+
+                nextPageElement.style.opacity = "1.0";
+
+                currentPageID = nextPageID;
+            }
+        </script>
+        <script src="index.js"></script>
     </body>
 </html>
