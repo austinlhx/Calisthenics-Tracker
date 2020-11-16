@@ -14,6 +14,8 @@ def run(video : str, exercise : str):
         video = os.path.basename(video)
             
         output_path = os.path.join('..', os.path.splitext(video)[0])
+        curr_dir = os.getcwd()
+        print(curr_dir)
         assert os.path.exists(os.path.join('ML', 'openpose', 'bin', 'OpenPoseDemo.exe'))==True
            
         openpose_path = os.path.join('bin', 'OpenPoseDemo.exe')
@@ -25,13 +27,15 @@ def run(video : str, exercise : str):
             '--model_pose', 'BODY_25',
             '--net_resolution', '-1x80',
             '--render_pose', '1',
-            '--disable_blending',
             '--disable_multi_thread'
         ])
 
         parse_sequence(output_path, '..')
         pose_seq = load_ps(os.path.join('..', os.path.splitext(video)[0] + '.npy'))
         (correct, feedback) = evaluate_pose(pose_seq, exercise)
+
+        os.chdir('../..')
+
         if correct:
             print('Exercise performed correctly!')
         else:

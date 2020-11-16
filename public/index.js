@@ -85,20 +85,17 @@ async function uploadVideo() {
 }
 
 
-
-
-
-
-
-function myfunc(url) {
-    // text = document.getElementById("video_type").value;
+function myfunc() {
+    text = document.getElementById("video_type").value;
     exercise = document.getElementById("exercise").value;
     
     data = {
-        "video_path" : url,
+        "video_path" : text,
         "exercise" : "bicep_curl"
     }
-    
+
+    console.log(data);
+
     fetch("http://localhost:5000/", {
         method: "GET",
         mode: 'no-cors',
@@ -124,7 +121,6 @@ function myfunc(url) {
         document.getElementById("Output").textContent = result;
     })
     .catch(error => console.log('error', error));
-
 }
 
 

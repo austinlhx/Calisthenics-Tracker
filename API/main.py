@@ -1,15 +1,16 @@
-from flask import Flask, request, make_response
+from flask import Flask, request, render_template
 from flask_cors import CORS, cross_origin
 import os
 
 from ML import main
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/position-estimate": {"origins": "*"}})
+CORS(app)
+#cors = CORS(app, resources={r"/position-estimate": {"origins": "*"}})
 
 @app.route('/', methods=['GET'])
 def hello_world():
-    return "Hello World!"
+    return "hello world"
 
 @app.route('/position-estimate', methods=['POST'])
 def run_ML():
