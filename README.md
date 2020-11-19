@@ -23,4 +23,4 @@ The goal of this project is to create an application which provides custom feedb
 
 1. Navigate to the ```/Public``` folder on the terminal
 
-2. Install node modules using the following command ```npm i```
+2. Install node modules using the following command ```npm install```
