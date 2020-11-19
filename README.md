@@ -1,6 +1,6 @@
 # Calisthenics-Tracker
 
-The goal of this project is to create an application which provides custom feedback for user posture during excercises, by using key pose estimation. This application leverages openpose for keypose estimation based on a pretrained CNN model and uses the guidelines in PoseTrainer (https://www.researchgate.net/publication/324759769_Pose_Trainer_Correcting_Exercise_Posture_using_Pose_Estimation) to design the feedback for users. Our front-end is built under ```/public``` and allows users to stream/upload videos of their workouts, which is then processed by our Flac server for serving the results of the ML.
+The goal of this project is to create an application which provides custom feedback for user posture during excercises, by using key pose estimation. This application leverages openpose for keypose estimation based on a pretrained CNN model and uses the guidelines in PoseTrainer (https://www.researchgate.net/publication/324759769_Pose_Trainer_Correcting_Exercise_Posture_using_Pose_Estimation) to design the feedback for users. Our front-end is built under ```/public``` and allows users to stream/upload videos of their workouts, which is then processed by our Flask server for serving the results of the ML.
 
 ## Setup & Installation
 
