@@ -19,7 +19,7 @@ def run(video : str, exercise : str):
         assert os.path.exists(os.path.join('ML', 'openpose', 'bin', 'OpenPoseDemo.exe'))==True
            
         openpose_path = os.path.join('bin', 'OpenPoseDemo.exe')
-        os.chdir('ML/openpose') 
+        os.chdir('ML/openpose')
             
         subprocess.call([openpose_path, 
             '--video', os.path.join('..', 'videos', video), 
